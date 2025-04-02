@@ -1,0 +1,27 @@
+SELECT
+  gameid AS game_id,
+  title,
+  platform,
+  JSON_EXTRACT_SCALAR(developers, '$[0]') AS developers,
+  JSON_EXTRACT_SCALAR(publishers, '$[0]') AS publishers,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 0,
+     JSON_EXTRACT_SCALAR(genres, '$[0]'), NULL)) AS genre_1,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 1,
+     JSON_EXTRACT_SCALAR(genres, '$[1]'), NULL)) AS genre_2,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 2,
+     JSON_EXTRACT_SCALAR(genres, '$[2]'), NULL)) AS genre_3,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 3,
+     JSON_EXTRACT_SCALAR(genres, '$[3]'), NULL)) AS genre_4,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 4,
+     JSON_EXTRACT_SCALAR(genres, '$[4]'), NULL)) AS genre_5,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 5,
+     JSON_EXTRACT_SCALAR(genres, '$[5]'), NULL)) AS genre_6,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 6,
+     JSON_EXTRACT_SCALAR(genres, '$[6]'), NULL)) AS genre_7,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 7,
+     JSON_EXTRACT_SCALAR(genres, '$[7]'), NULL)) AS genre_8,
+  LOWER(IF(ARRAY_LENGTH(JSON_EXTRACT_ARRAY(genres)) > 8,
+     JSON_EXTRACT_SCALAR(genres, '$[8]'), NULL)) AS genre_9,
+  release_date
+FROM
+  `playstation-project-454010.playstation_data.games`
